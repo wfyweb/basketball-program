@@ -1,0 +1,19 @@
+/**index.wxss**/
+.container{
+  padding: 0;
+  background-color: #f7f8fa;
+
+}
+.home{
+  width: 100vw;
+  height: 100vh;
+  background-color: #f7f8fa;
+  overflow: hidden;
+}
+#myMap{
+  margin: 2vh 2vw;
+  width: 96vw;
+  height: 96vh;
+  border-radius: 10px;
+  overflow: hidden;
+}

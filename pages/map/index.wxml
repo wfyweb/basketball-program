@@ -1,0 +1,24 @@
+<!--index.wxml-->
+<view class="home">
+  <map
+      id="myMap"
+      latitude="{{latitude}}"
+      longitude="{{longitude}}"
+      scale="14"
+      show-location
+      markers = "{{markers}}" 
+      bindmarkertap="handleMaker"
+    >
+    <cover-view slot="callout" display='ALWAYS'></cover-view>
+    <!-- subkey="F5FBZ-A6EKD-GDC44-HNQZ7-QY3SZ-RAFTG" -->
+  </map>
+    <!-- 循环标记点 -->
+    <!-- markers="{{markers}}" -->
+    <!-- 点击标记点出发 -->
+    <!-- bindmarkertap="markertap" -->
+    <!-- 点击标记点对应的气泡时触发e.detail = {markerId} -->
+    <!-- bindcallouttap="callouttap" -->
+    <!-- 点击label时触发，e.detail = {markerId} -->
+    <!-- bindlabeltap="labeltap" -->
+
+</view>

@@ -1,0 +1,26 @@
+<!--pages/user/user.wxml-->
+<view class="user">
+  <van-cell title="头像" is-link>
+    <!-- avatarUrl -->
+        <image class="avatarUrl" src="{{avatarUrl}}" />
+      <!-- <view ></view> -->
+  </van-cell>
+  <van-cell title="名称" is-link value="{{  nickName }}"  />
+  <van-cell title="积分" is-link value="{{  integral }}" bind:click="handleIntegral" />
+  <van-popup
+    show="{{ show }}"
+    position="bottom"
+    custom-style="height: 40%;"
+    bind:close="onClose"
+  >
+  <van-picker columns="{{ columns }}" 
+    show-toolbar
+    bind:cancel="onClose"
+    bind:confirm="onConfirm"
+  />
+  </van-popup>
+    <van-button round type="primary" class="release" size="large" bindtap="handleSave">
+    确定
+  </van-button>
+</view>
+<van-toast id="van-toast" />

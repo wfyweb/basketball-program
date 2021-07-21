@@ -1,0 +1,8 @@
+<!--logs.wxml-->
+
+<view class="container log-list">
+  <camera device-position="back" style="width:100%;height:300px"></camera>
+  <block wx:for="{{logs}}" wx:key="timeStamp" wx:for-item="log">
+    <text class="log-item">{{index + 1}}. {{log.date}}</text>
+  </block>
+</view>

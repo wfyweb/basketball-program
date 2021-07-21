@@ -1,0 +1,34 @@
+<view>
+  <van-checkbox-group
+    class="card-goods"
+    value="{{ checkedGoods }}"
+    bind:change="onChange"
+  >
+    <van-checkbox
+      class="card-goods__item"
+      wx:for="{{ goods }}"
+      wx:key="{{ item.id }}"
+      name="{{ item.id }}"
+    >
+      <van-card
+        title="{{ item.title }}"
+        desc="{{ item.desc }}"
+        num="{{ item.num }}"
+        price="{{ item.formatPrice }}"
+        thumb="{{ item.thumb }}"
+      />
+    </van-checkbox>
+  </van-checkbox-group>
+  <!-- <van-submit-bar
+    price="{{ totalPrice }}"
+    disabled="{{ !checkedGoods.length }}"
+    button-text="{{ submitBarText }}"
+    bind:submit="onSubmit"
+  /> -->
+  <van-checkbox value="{{ checked }}" bind:change="onChange">复选框</van-checkbox>
+  <van-checkbox-group value="{{ result }}" bind:change="onChange1">
+  <van-checkbox name="a">复选框 a</van-checkbox>
+  <van-checkbox name="b">复选框 b</van-checkbox>
+  <van-checkbox name="c">复选框 c</van-checkbox>
+</van-checkbox-group>
+</view>

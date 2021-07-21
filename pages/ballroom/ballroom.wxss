@@ -1,0 +1,37 @@
+/* pages/ballroom.wxss */
+.ballroom{
+  background-color: #f7f8fa;
+  width: 100vw;
+  height: 100vh;
+}
+.ball-list{
+  background-color: #fff;
+  padding: 10px 0;
+  margin-bottom: 100px;
+}
+.ball-list .ball-title,.ball-content{
+  padding: 10px 16px;
+  font-size: 14px;
+  color: #323233;
+  display: block;
+}
+.ball-people{
+  padding: 10px 16px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+.ball-people-title{
+  padding: 0 10px;
+  color: #94949c;
+}
+.ball-content{
+  font-size: 12px;
+  color: #94949c;
+}
+view .release button{
+  width: 80vw;
+  margin: 0 auto;
+  display: block;
+  line-height: 50px;
+}
