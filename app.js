@@ -25,15 +25,15 @@ App({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
       }
     })
-    wx.request({
-      url: 'http://192.168.11.119:3000/user?a=11&b=22', //仅为示例，并非真实的接口地址
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success: function(res) {
-        console.log(res.data)
-      }
-    })
+    // wx.request({
+    //   url: 'http://192.168.11.119:3000/user?a=11&b=22', //仅为示例，并非真实的接口地址
+    //   header: {
+    //     'content-type': 'application/json' // 默认值
+    //   },
+    //   success: function(res) {
+    //     console.log(res.data)
+    //   }
+    // })
   },
   onHide(){
     const isUser = wx.getStorageSync('user')
@@ -51,15 +51,15 @@ App({
 
   },
   hanleOut(){
-    wx.request({
-      url: 'http://192.168.11.119:3000/loginOut?a=11&b=22', 
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success: function(res) {
-        console.log(res.data)
-      }
-    })
+    // wx.request({
+    //   url: 'http://192.168.11.119:3000/loginOut?a=11&b=22', 
+    //   header: {
+    //     'content-type': 'application/json' // 默认值
+    //   },
+    //   success: function(res) {
+    //     console.log(res.data)
+    //   }
+    // })
   },
   onSaveExitState: function() {
     this.hanleOut()

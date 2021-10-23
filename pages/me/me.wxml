@@ -9,7 +9,6 @@
       <view class="b-center">
         <image src="{{userInfo.avatarUrl}}" class="avatar"></image>
         <text class="nickName">{{userInfo.nickName}}</text>
-        <text >{{userInfo.integral}}分</text>
       </view>
       <view>
         <text class="num">5</text>

@@ -16,15 +16,9 @@ Page({
   bindViewMap() {
     const isUser = wx.getStorageSync('user')
     console.log(isUser.integral)
-    if (isUser.integral && isUser.integral>0){
-      wx.switchTab({
-        url: '../map/index'
-      })
-    }else{
-      wx.navigateTo({
-        url: '../user/user',
-      })
-    }
+    wx.switchTab({
+      url: '../map/index'
+    })
   },
   onLoad() {
     // 登录过跳转主页

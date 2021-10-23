@@ -28,15 +28,15 @@ Page({
     this.hanleOut()
   },
   hanleOut(){
-    wx.request({
-      url: 'http://192.168.11.119:3000/loginOut?a=11&b=22', 
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success: function(res) {
-        console.log(res.data)
-      }
-    })
+    // wx.request({
+    //   url: 'http://192.168.11.119:3000/loginOut?a=11&b=22', 
+    //   header: {
+    //     'content-type': 'application/json' // 默认值
+    //   },
+    //   success: function(res) {
+    //     console.log(res.data)
+    //   }
+    // })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

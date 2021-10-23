@@ -1,5 +1,7 @@
 // pages/ballroom.js 
 import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast'
+const chooseLocation = requirePlugin('chooseLocation');
+const { config } = require('../../utils/util')
 const formatTimeValue =()=>{
   let res = []
   for(let i=0;i<24;i++){
@@ -118,6 +120,32 @@ Page({
     setTimeout(()=>{
       wx.navigateBack()
     },1000)
+  },
+  selectMap() {
+    const key = config.key;
+    const referer = config.referer; 
+    wx.getLocation({
+      type: 'gcj02', 
+      success (res) {
+        const latitude = res.latitude
+        const longitude = res.longitude
+        const location = JSON.stringify({
+          latitude,
+          longitude
+        });
+        const category = '生活服务,娱乐休闲';
+        wx.navigateTo({
+          url: 'plugin://chooseLocation/index?key=' + key + '&referer=' + referer + '&location=' + location + '&category=' + category
+        })
+      }
+     })
+  },
+  onShow () {
+    const location = chooseLocation.getLocation(); // 如果点击确认选点按钮，则返回选点结果对象，否则返回null
+    console.log('ok==>',location)
+  },
+  onUnload () {
+      // 页面卸载时设置插件选点数据为null，防止再次进入页面，geLocation返回的是上次选点结果
+      chooseLocation.setLocation(null);
   }
- 
 })

@@ -11,7 +11,7 @@
       </view>
     </block>
     <block wx:elif="{{!hasUserInfo}}">
-      <button open-type="getUserInfo" bindtap="getUserProfile"> 获取头像昵称 </button>
+      <view class="userinfo-name">初次相遇，请先登录😊</view>
       <!-- <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button> -->
       <!-- <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button> -->
       <!-- <view wx:else> 请使用1.4.4及以上版本基础库 </view> -->
@@ -23,5 +23,8 @@
   </view>
   <view class="usermotto" wx:if="{{canIUseOpenData}}">
     <text class="user-motto" bindtap="bindViewMap">{{motto}}</text>
+  </view>
+  <view class="usermotto" wx:else>
+    <text class="user-motto" bindtap="getUserProfile">登录</text>
   </view>
 </view>

@@ -17,3 +17,29 @@
   border-radius: 10px;
   overflow: hidden;
 }
+.container-map{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 15vw;
+  height: 35vh;
+}
+.container-map-auto{
+  height: 55vh;
+}
+.tool{
+  width: 11vw;
+  height: 11vw;
+  margin: 3vw auto;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 1px 1px 3px #888;
+}
+.tool-icon{
+  width: 8vw;
+  height: 8vw;
+  margin: 1.5vw auto;
+}
+.tool-route{
+  transform: translateY(3rpx);
+}

@@ -2,23 +2,28 @@
 // 获取应用实例
 const app = getApp()
 var QQMapWX = require('../../utils/qqmap-wx-jssdk.js');
+var { config } = require('../../utils/util')
 var qqmapsdk;
 Page({
   data: {
-    // latitude: 34.086223,
-    // longitude: 113.847763,  
-    latitude: 23.096994,
-    longitude: 113.324520,  
+    latitude: null,
+    longitude: null,  
     markers: [],
-    currMaker:{}
+    currMaker:{},
+    typeMaker: 0, // 0：球场  1：好友
+    isToolFriend: false,
+    friendIndex: 0
   },
 
   onLoad() {
     // 实例化API核心类
     qqmapsdk = new QQMapWX({
-      key: 'F5FBZ-A6EKD-GDC44-HNQZ7-QY3SZ-RAFTG'
+      key: config.key
   });
     this.getLocation()
+  },
+  onReady: function (e) {
+    this.mapCtx = wx.createMapContext('myMap')
   },
   onSearch(){
     const {data} = this
@@ -42,13 +47,47 @@ Page({
           })
         }
         that.setData({
-          markers:mks
+          markers:mks,
+          typeMaker: 0
         })
       },
       fail:error=>{
         console.log(error)
       }
     })
+  },
+  getFriend(e) {
+    // TODO MOCK
+    var mks = [
+      { // 获取返回结果，放到mks数组中  
+        title: '好友1',
+        id:0,
+        latitude: 31.2231,
+        longitude: 121.560743, 
+        iconPath: "../../image/mk.png", //图标路径
+        width: 22,
+        height: 22,
+        // _distance:res.data[i]._distance
+      },
+      { // 获取返回结果，放到mks数组中  
+        title: '好友2',
+        id:1,
+        latitude: 31.211762,
+        longitude: 121.53347, 
+        iconPath: "../../image/mk.png", //图标路径
+        width: 22,
+        height: 22,
+        // _distance:res.data[i]._distance
+      },
+    ]
+    this.setData({
+      markers: mks,
+      typeMaker: 1,
+    })
+  },
+  // 定位用户中心
+  centerMap() {
+    this.mapCtx.moveToLocation()
   },
   //获取当前位置
   getLocation() {
@@ -106,36 +145,56 @@ Page({
  
     })
   },
+  // 点击地图图标
   handleMaker(e){
-    let markers = this.data.markers
-    // console.log('num',e.detail.markerId.toString())
-    console.log('e',e)
+    if( this.data.typeMaker ){
+      // 点击好友
+      this.handleFriendMaker(e)
+    }else{
+      //  点击球场
+      this.handleBallMaker(e)
+    }
+  },
+  handleFriendMaker(e){
     const makeId = e.detail.markerId
-    let makerIndex = 0
-    let marker = {}
-    this.data.markers.map((item,index)=>{
-      if(item.id === makeId){
-        makerIndex = index
-        marker = item
-      }
+    const item = this.data.markers.filter((v)=>v.id === makeId)[0]
+    this.setData({
+      isToolFriend: true,
+      friendIndex: e.detail.markerId
     })
-    const params ={ 
-      makerIndex: makerIndex,
-      marker:marker
-     }
+    
+  },
+  // 点击球场，进入导航
+  handleBallMaker(e){
+    console.log('qiu e',e)
+    const makeId = e.detail.markerId
+    this.openRoutePlan(makeId)
+  },
+  tapMassage() {
+    const makeId = this.data.friendIndex
+    const item = this.data.markers.filter((v)=>v.id === makeId)[0]
+
     wx.navigateTo({
-      url: '../ballroom/ballroom?params='+JSON.stringify(params),
-      // events: {
-      //   someEvent: function(data) {
-      //     console.log(data)
-      //   },
-      // },
-      // success: function(res) {
-      //   // 通过eventChannel向被打开页面传送数据
-      //   res.eventChannel.emit('someEvent', 
-         
-      //   )
-      // }
+      url: '../ballroom/ballroom?params='+JSON.stringify(item)
     })
+  },
+  tapRote(){
+    const makeId = this.data.friendIndex
+    this.openRoutePlan(makeId)
+  },
+  // 打开地图导航
+  openRoutePlan(id){
+    const item = this.data.markers.filter((v)=>v.id === id)[0]
+    let key = config.key;  
+    let referer = config.referer;   
+    let themeColor = config.themeColor;
+    let endPoint = JSON.stringify({  //终点
+      'name': item.title,
+      'latitude': item.latitude,
+      'longitude': item.longitude
+    });
+    wx.navigateTo({
+      url: 'plugin://routePlan/index?key=' + key + '&referer=' + referer + '&endPoint=' + endPoint
+    });
   }
 })

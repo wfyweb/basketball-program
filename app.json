@@ -1,12 +1,11 @@
 {
   "pages": [
-    "pages/me/me",
-    "pages/index/index",
-    "pages/user/user",
     "pages/map/index",
     "pages/ballroom/ballroom",
-    "pages/car/car",
-    "pages/logs/logs"
+    "pages/index/index",
+    "pages/me/me",
+    "pages/user/user",
+    "pages/car/car"
   ],
   "window": {
     "navigationBarTextStyle": "white",
@@ -38,6 +37,16 @@
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
     "van-button": "@vant/weapp/button/index"
+  },
+  "plugins": {
+    "routePlan": {
+      "version": "1.0.14",
+      "provider": "wx50b5593e81dd937a"
+    },
+    "chooseLocation": {
+      "version": "1.0.6",
+      "provider": "wx76a9a06e5b4e693e"
+    }
   },
   "permission": {
     "scope.userLocation": {
