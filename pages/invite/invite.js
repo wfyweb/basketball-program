@@ -1,67 +1,24 @@
 // pages/ballroom.js 
 import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast'
 const chooseLocation = requirePlugin('chooseLocation');
-const { config } = require('../../utils/util')
-const formatTimeValue =()=>{
-  let res = []
-  for(let i=0;i<24;i++){
-    res.push(`${i}:00`)
-  }
-  return res
-}
-const formatTimeData = () =>{
-  const obj = new Object()
-  for(let i=0;i<24;i++){
-    if(i === 23){
-      obj[`${i}:00`] = ['0:00']
-    }else{
-      // obj[`${i}:00`] = formatTimeValue().slice(i+1)
-      obj[`${i}:00`] = [`${i+1}:00`]
-    }
-  }
-  return obj
-}
+const { formatTime } = require('../../utils/util')
+const { config } = require('../../config')
+
 Page({
   /**
    * 页面的初始数据
    */
   data: {
     params:{},
-    isBall: false,
-    title:'',
-    date: '',
-    time:'',
+    location: {
+      name:''
+    },
+    title: '',
+    date: formatTime('yyyy/MM/dd'),
+    time: formatTime('hh:mm'),
     dateShow: false,
     timeShow: false,
-    columns: [
-      {
-        values: Object.keys(formatTimeData()),
-        className: 'column1',
-      },
-      {
-        values: formatTimeData()['0:00'],
-        className: 'column2',
-        defaultIndex: 0,
-      },
-    ],
-  },
-  // 时段关联
-  onTimeChange(event){
-    const { value } = event.detail;
-    const key = value[0]
-    this.setData({
-      columns:[
-        {
-          values: Object.keys(formatTimeData()),
-          className: 'column1',
-        },
-        {
-          values: formatTimeData()[key],
-          className: 'column2',
-          defaultIndex: 0,
-        },
-      ]
-    })
+
   },
   handleTime(){
     this.setData({ timeShow: true });
@@ -76,12 +33,15 @@ Page({
     this.setData({ timeShow: false });
   },
   onTimeConfirm(event){
-    const { value, index } = event.detail;
-    const timeValue = value.join('~')
     this.setData({
-      time: timeValue,
-      timeShow: false
-    })
+      time: event.detail,
+      timeShow: false,
+    });
+  },
+  onInput(event) {
+    this.setData({
+      time: event.detail,
+    });
   },
   formatDate(date) {
     date = new Date(date);
@@ -99,9 +59,11 @@ Page({
    */
   onLoad: function (options) {
     const params = JSON.parse(options.params) 
-    console.log(params)
+    console.log('onload',params)
+    
     this.setData({
       params,
+      title: params.title
     })
   },
   handleSave(){
@@ -114,9 +76,17 @@ Page({
       Toast.fail('请选择时段！');
       return
     }
-    // TODO 约球请求
-    const info = this.data.isBall ? '邀约':'发布'
-    Toast({type:'success',message: info+'成功！',duration:1000});
+    if(this.data.location === ''){
+      Toast.fail('请选择地点！');
+      return
+    }
+    const {title, date, time, location } = this.data
+    const params = {
+      title, date, time, location
+    }
+    console.log('parmans', params);
+    // TODO MOCK 发送邀请函
+    Toast({type:'success',message: '发送成功！',duration:1000});
     setTimeout(()=>{
       wx.navigateBack()
     },1000)
@@ -141,11 +111,15 @@ Page({
      })
   },
   onShow () {
-    const location = chooseLocation.getLocation(); // 如果点击确认选点按钮，则返回选点结果对象，否则返回null
-    console.log('ok==>',location)
+    const location = chooseLocation.getLocation();
+    if(location && location.name){
+      this.setData({
+        location
+      })
+    }
+    
   },
   onUnload () {
-      // 页面卸载时设置插件选点数据为null，防止再次进入页面，geLocation返回的是上次选点结果
-      chooseLocation.setLocation(null);
+    chooseLocation.setLocation(null);
   }
 })

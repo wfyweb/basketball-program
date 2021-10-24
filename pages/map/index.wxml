@@ -14,7 +14,7 @@
       <cover-view wx:if="{{isToolFriend}}">
         <!-- 邀请函 -->
         <cover-view class="tool" bindtap="tapMassage">
-          <cover-image class="tool-icon" src="../../image/tool-route.png"></cover-image>
+          <cover-image class="tool-icon" src="../../image/tool-msg.png"></cover-image>
         </cover-view>
         <!-- 导航 -->
         <cover-view class="tool" bindtap="tapRote">

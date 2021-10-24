@@ -29,9 +29,10 @@
   font-size: 12px;
   color: #94949c;
 }
-view .release button{
+view .release{
   width: 80vw;
   margin: 0 auto;
+  margin-top: 40vh;
   display: block;
   line-height: 50px;
 }

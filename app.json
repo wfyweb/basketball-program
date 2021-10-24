@@ -1,8 +1,9 @@
 {
   "pages": [
-    "pages/map/index",
-    "pages/ballroom/ballroom",
     "pages/index/index",
+
+    "pages/map/index",
+    "pages/invite/invite", 
     "pages/me/me",
     "pages/user/user",
     "pages/car/car"

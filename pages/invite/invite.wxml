@@ -2,26 +2,32 @@
 <view class="ballroom">
   <van-cell title="发送给" value="{{params.title}}" />
   <van-cell title="日期" is-link value="{{ date }}" bind:click="onDisplay" />
+  <!-- 日期选择器 -->
   <van-calendar
    show="{{ dateShow }}" 
    bind:close="onClose" 
    bind:confirm="onConfirm" 
   />
   <van-cell title="时间" is-link value="{{ time }}" bind:click="handleTime" />
-  <van-cell title="地点" is-link value="{{ time }}" bind:click="selectMap" />
+  <van-cell title="地点" is-link value="{{ location.name }}" bind:click="selectMap" />
+  <!-- 时间选择器 -->
   <van-popup
   show="{{ timeShow }}"
   position="bottom"
   custom-style="height: 40%;"
   bind:close="onTimeClose"
->
-<van-picker columns="{{ columns }}" 
-  show-toolbar    
-  bind:change="onTimeChange" 
-  bind:cancel="onTimeClose"
-  bind:confirm="onTimeConfirm"
-/>
-</van-popup>
+  >
+    <van-datetime-picker
+      type="time"
+      value="{{ time }}"
+      min-hour="1"
+      max-hour="23"
+      bind:input="onInput"
+      bind:cancel="onTimeClose"
+      bind:confirm="onTimeConfirm"
+      
+    />
+  </van-popup>
 
 <!-- <van-cell title="是否约球"  ></van-cell> -->
 <!-- <view class="ball-list">

@@ -2,7 +2,7 @@
 // 获取应用实例
 const app = getApp()
 var QQMapWX = require('../../utils/qqmap-wx-jssdk.js');
-var { config } = require('../../utils/util')
+const { config } = require('../../config')
 var qqmapsdk;
 Page({
   data: {
@@ -175,7 +175,7 @@ Page({
     const item = this.data.markers.filter((v)=>v.id === makeId)[0]
 
     wx.navigateTo({
-      url: '../ballroom/ballroom?params='+JSON.stringify(item)
+      url: '../invite/invite?params='+JSON.stringify(item)
     })
   },
   tapRote(){
