@@ -1,0 +1,48 @@
+<!--index.wxml-->
+<view class="home">
+  <map
+      id="myMap"
+      latitude="{{latitude}}"
+      longitude="{{longitude}}"
+      scale="14"
+      show-location
+      markers = "{{markers}}" 
+      bindmarkertap="handleMaker"
+      bindlabeltap="handleMaker"
+    >
+    <!-- 地图工具 -->
+    <cover-view class="container-map {{isToolFriend ? 'container-map-auto' : '' }} ">
+      <cover-view wx:if="{{isToolFriend}}">
+        <!-- 邀请函 -->
+        <cover-view class="tool" bindtap="tapMassage">
+          <cover-image class="tool-icon" src="../../image/tool-msg.png"></cover-image>
+        </cover-view>
+        <!-- 导航 -->
+        <cover-view class="tool" bindtap="tapRote">
+          <cover-image class="tool-icon tool-route" src="../../image/tool-route.png"></cover-image>
+        </cover-view>
+      </cover-view>
+      <!-- 附件球场 -->
+      <cover-view class="tool"  bindtap="onSearch">
+        <cover-image class="tool-icon tool-user" src="../../image/tool-ball.png"></cover-image>
+      </cover-view>
+      <!-- 附件好友 -->
+      <cover-view class="tool" bindtap="getFriend">
+        <cover-image class="tool-icon" src="../../image/41.png"></cover-image>
+      </cover-view>
+      <!-- 位置 -->
+      <cover-view class="tool" bindtap="centerMap">
+        <cover-image class="tool-icon" src="../../image/tool-location.png"></cover-image>
+      </cover-view>
+    </cover-view>
+  </map>
+    <!-- 循环标记点 -->
+    <!-- markers="{{markers}}" -->
+    <!-- 点击标记点出发 -->
+    <!-- bindmarkertap="markertap" -->
+    <!-- 点击标记点对应的气泡时触发e.detail = {markerId} -->
+    <!-- bindcallouttap="callouttap" -->
+    <!-- 点击label时触发，e.detail = {markerId} -->
+    <!-- bindlabeltap="labeltap" -->
+
+</view>

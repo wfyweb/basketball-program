@@ -1,0 +1,28 @@
+<!--pages/me/me.wxml-->
+<view class="me-content">
+  <view class="c-block">
+    <view class="b-content">
+      <view> 
+        <text class="num">{{accept}}</text>
+        <text class=invitation">收到预约</text>
+      </view>
+      <view class="b-center">
+        <image src="{{userInfo.avatarUrl}}" class="avatar"></image>
+        <text class="nickName">{{userInfo.nickName}}</text>
+      </view>
+      <view>
+        <text class="num">{{send}}</text>
+        <text class=invitation">发布预约</text>
+      </view>
+    </view>
+    <!-- // 波浪背景图 -->
+    <view class="b-bg">
+      <image src="../../image/bg_wave.gif" class="bg_ware"></image>
+    </view>
+  </view>
+<view class="c-cell">
+  <van-cell icon="location-o" title="比赛" is-link  bind:click="onDisplay" />
+  <van-cell icon="chat-o" title="消息" is-link  bind:click="toMsg" />
+  <van-cell icon="setting-o" title="设置" is-link  bind:click="onDisplay" />
+</view>
+</view>

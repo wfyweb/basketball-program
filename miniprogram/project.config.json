@@ -1,16 +1,18 @@
 {
-    "miniprogramRoot": "miniprogram/",
-    "cloudfunctionRoot": "cloudfunctions/",
+    "description": "项目配置文件",
+    "packOptions": {
+        "ignore": []
+    },
     "setting": {
-        "urlCheck": true,
+        "urlCheck": false,
         "es6": true,
-        "enhance": true,
+        "enhance": false,
         "postcss": true,
         "preloadBackgroundData": false,
         "minified": true,
-        "newFeature": true,
+        "newFeature": false,
         "coverView": true,
-        "nodeModules": false,
+        "nodeModules": true,
         "autoAudits": false,
         "showShadowRootInWxmlPanel": true,
         "scopeDataCheck": false,
@@ -28,17 +30,32 @@
             "disablePlugins": [],
             "outputPath": ""
         },
+        "enableEngineNative": false,
         "useIsolateContext": true,
         "userConfirmedBundleSwitch": false,
         "packNpmManually": false,
-        "packNpmRelationList": [],
+        "packNpmRelationList": [
+            {
+                "packageJsonPath": "./package.json",
+                "miniprogramNpmDistDir": "./"
+            }
+        ],
         "minifyWXSS": true,
         "showES6CompileOption": false
     },
+    "compileType": "miniprogram",
+    "libVersion": "2.17.0",
     "appid": "wx09812c62aa92d782",
-    "projectname": "miniprogram-1",
-    "libVersion": "2.14.1",
-    "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
+    "projectname": "basketball-program",
+    "debugOptions": {
+        "hidedInDevtools": []
+    },
+    "scripts": {},
+    "staticServerOptions": {
+        "baseURL": "",
+        "servePath": ""
+    },
+    "isGameTourist": false,
     "condition": {
         "search": {
             "list": []
@@ -46,20 +63,17 @@
         "conversation": {
             "list": []
         },
-        "plugin": {
-            "list": []
-        },
         "game": {
             "list": []
         },
+        "plugin": {
+            "list": []
+        },
+        "gamePlugin": {
+            "list": []
+        },
         "miniprogram": {
-            "list": [
-                {
-                    "id": -1,
-                    "name": "db guide",
-                    "pathName": "pages/databaseGuide/databaseGuide"
-                }
-            ]
+            "list": []
         }
     }
 }

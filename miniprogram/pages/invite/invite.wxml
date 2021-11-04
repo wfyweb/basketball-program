@@ -1,0 +1,59 @@
+
+<view class="ballroom">
+  <van-cell title="发送给" value="{{params.title}}" />
+  <van-image 
+    class="avatarUrl" 
+    width="3rem"
+    height="3rem"
+    round lazy-load
+    src="{{params.iconPath}}" 
+  />
+  <van-cell title="日期" is-link value="{{ date }}" bind:click="onDisplay" />
+  <!-- 日期选择器 -->
+  <van-calendar
+   show="{{ dateShow }}" 
+   bind:close="onClose" 
+   bind:confirm="onConfirm" 
+  />
+  <van-cell title="时间" is-link value="{{ time }}" bind:click="handleTime" />
+  <van-cell title="地点" is-link value="{{ location.name }}" bind:click="selectMap" />
+  <!-- 时间选择器 -->
+  <van-popup
+  show="{{ timeShow }}"
+  position="bottom"
+  custom-style="height: 40%;"
+  bind:close="onTimeClose"
+  >
+    <van-datetime-picker
+      type="time"
+      value="{{ time }}"
+      min-hour="1"
+      max-hour="23"
+      bind:input="onInput"
+      bind:cancel="onTimeClose"
+      bind:confirm="onTimeConfirm"
+      
+    />
+  </van-popup>
+
+<!-- <van-cell title="是否约球"  ></van-cell> -->
+<!-- <view class="ball-list">
+  <text class="ball-title">是否约球</text>
+  <text class="ball-content" wx:if="{{!isBall}}">该时段暂无约球人员</text>
+  <view class="ball-people" wx:else>
+    <van-image
+      round
+      width="3rem"
+      height="3rem"
+      fit="cover"
+      src="https://img.yzcdn.cn/vant/cat.jpeg"
+    />
+    <text class="ball-people-title">张三</text>
+  </view>
+</view>  -->
+
+<van-button round type="primary" class="release" size="large" bindtap="handleSave">
+  邀约
+</van-button>
+<van-toast id="van-toast" />
+</view>

@@ -1,0 +1,57 @@
+<view class="box">
+  <van-tabs active="{{ active }}" bind:change="onChange" color="#eed7aa">
+    <van-tab title="发送邀请"></van-tab>
+    <van-tab title="接受邀请"></van-tab>
+  </van-tabs>
+  <view class="container">
+      <view class="item" wx:for="{{list}}" wx:key="index">
+        <view class="row">
+          <view class="lable">邀请：</view>
+          <view class="value">{{item.title}}</view>
+        </view>
+        <view class="row">
+          <view class="lable">时间：</view>
+          <view class="value">{{item.date}} {{item.time}}</view>
+        </view>
+        <view class="row">
+          <view class="lable">地点：</view>
+          <view class="value"> {{item.location}} </view>
+        </view>
+        <view class="row">
+          <view class="lable">内容：</view>
+          <view class="value">约球邀请</view>
+        </view>
+        <view class="row info" >
+          <!-- 发送方 0 -->
+          <view class="state" wx:if="{{item.sendState === 0 && item.sendId === opendId}}">等待对方回复...</view>
+          <!-- 接受方 0 -->
+          <view class="state"  wx:if="{{item.sendState === 0 && item.acceptId === opendId}}">
+            <button class="state-button" data-item='{{item._id}}' bindtap="onAgree" size="mini" type="primary"> 同意</button>
+            <button class="state-button" data-item='{{item._id}}' bindtap="onRefuse" size="mini" type="warn"> 拒绝</button>
+          </view>
+          <view class="state" wx:if="{{item.sendState === 1 }}">
+            <button  wx:if="{{ item.sendId === opendId}}" data-item="{{item._id}}" data-state="3"  class="state-button" bindtap="onSign" size="mini" type="primary"> 签到 </button>
+            <button  wx:if="{{ item.acceptId === opendId}}" data-item="{{item._id}}" data-state="4" class="state-button" bindtap="onSign" size="mini" type="primary"> 签到 </button>
+          </view>
+          <view class="state" wx:if="{{item.sendState === 2 }}">
+            <text  wx:if="{{ item.sendId === opendId}}" > 对方拒接邀请... </text>
+            <text  wx:if="{{ item.acceptId === opendId}}" >  你已拒接邀请... </text>
+          </view>
+          <view class="state" wx:if="{{item.sendState === 3 }}">
+            <text  wx:if="{{ item.sendId === opendId}}" > 您已签到，等待对方签到 </text>
+            <button  wx:if="{{ item.acceptId === opendId}}" class="state-button" data-item='{{item._id}}' data-state="5" bindtap="onSign" size="mini" type="primary"> 签到 </button>
+          </view>
+          <view class="state" wx:if="{{item.sendState === 4 }}">
+            <text  wx:if="{{ item.acceptId === opendId}}" > 您已签到，等待对方签到 </text>
+            <button  wx:if="{{ item.sendId === opendId}}" class="state-button" data-item='{{item._id}}' data-state="5" bindtap="onSign" size="mini" type="primary"> 签到 </button>
+          </view>
+          <view class="state" wx:if="{{item.sendState === 5 }}">
+            <text > 双方签到成功... </text>
+          </view>
+        </view>
+      </view>
+      <view class="info" wx:if="{{!list.length}}">
+        暂无消息
+      </view>
+    </view>
+</view>
