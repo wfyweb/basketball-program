@@ -1,1 +1,0 @@
-"D:\IDE\wx\微信web开发者工具\cli.bat" cloud functions deploy --e cloud1-1gguqufh776bd714 --n quickstartFunctions --r --project "D:\wx\demo" --report_start --report
